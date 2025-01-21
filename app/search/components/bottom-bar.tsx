@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Button } from "@components/app/components/button";
+import { Button } from "@components/app/components/button/button";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Dog } from "@components/app/types/dog.types";

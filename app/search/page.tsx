@@ -8,12 +8,12 @@ import { Dog } from "../types/dog.types";
 import Pagination from "./components/pagination";
 import Modal from "../components/modal/modal";
 import { DogCard } from "./components/dog-card";
-import { ModalContent } from "../components/modal/modal.types";
-import { Button } from "../components/button";
+import { ModalContent } from "../types/modal.types";
+import { Button } from "../components/button/button";
 import BottomBar from "./components/bottom-bar";
-import LoadingPage from "./components/loading-page";
-import FetchingDogs from "./components/fetching-dogs";
-import FetchingDogsError from "./components/fetching-dogs-error";
+import LoadingPage from "./components/loading-error-states/loading-page";
+import FetchingDogs from "./components/loading-error-states/fetching-dogs";
+import FetchingDogsError from "./components/loading-error-states/fetching-dogs-error";
 
 export default function SearchPage() {
   // page state
@@ -45,8 +45,10 @@ export default function SearchPage() {
   const [totalDogs, setTotalDogs] = useState<number>(0);
   const [availableDogIds, setAvailableDogIds] = useState<string[]>([]);
 
+  // favorite dogs state
   const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([]);
 
+  // modal state
   const [modalContent, setModalContent] = useState<ModalContent | null>({
     isOpen: true,
     title: "Welcome!",
@@ -184,6 +186,10 @@ export default function SearchPage() {
     }
   };
 
+  const handleClearFavorites = () => {
+    setFavoriteDogs([]);
+  };
+
   useEffect(() => {
     handleSearchDogs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -243,20 +249,19 @@ export default function SearchPage() {
                 <AvailableDogs
                   availableDogIds={availableDogIds}
                   onAddFavorite={handleAddFavorite}
-                  favoritesOnly={true}
                 />
               )}
             </div>
             <div>
               <Pagination
-                currentPage={currentPage}
                 pageSize={25}
+                currentPage={currentPage}
                 totalDogs={totalDogs}
                 setCurrentPage={setCurrentPage}
               />
               <BottomBar
                 favoriteDogs={favoriteDogs}
-                onClearFavorites={() => setFavoriteDogs([])}
+                onClearFavorites={handleClearFavorites}
                 onMatchMe={handleMatchMe}
               />
             </div>

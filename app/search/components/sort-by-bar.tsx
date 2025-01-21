@@ -1,4 +1,4 @@
-import { Button } from "@components/app/components/button";
+import { Button } from "@components/app/components/button/button";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 interface SortByBarProps {

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { FiltersParams } from "@components/app/types/filters.types";
 import { Select } from "@headlessui/react";
-import { Button } from "@components/app/components/button";
+import { Button } from "@components/app/components/button/button";
 
 interface SidebarFiltersProps {
   filters: FiltersParams;
@@ -90,7 +90,7 @@ const SidebarFilters = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="location" className="text-sm font-medium">
+        <label htmlFor="location" className="text-sm font-medium text-gray-300">
           Zip Code (leave blank to search all)
         </label>
         <input
@@ -100,13 +100,12 @@ const SidebarFilters = ({
           value={filters.zipCodes.join(",")}
           onChange={handleChange}
           placeholder="Enter zip code"
-          className="p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 border-gray-600 px-3 py-2 bg-gray-700 text-gray-400"
+          className="p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 bg-gray-700"
         />
       </div>
 
-      {/* Breed Dropdown */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="breed" className="text-sm font-medium">
+        <label htmlFor="breed" className="text-sm font-medium text-gray-300">
           Breed
         </label>
         <Select
@@ -114,7 +113,7 @@ const SidebarFilters = ({
           name="breeds"
           value={filters.breeds[0] || ""}
           onChange={handleChange}
-          className="py-2.5 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 bg-gray-700 text-gray-400"
+          className="p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 bg-gray-700"
         >
           <option value="">All Breeds</option>
           {breeds.map((breed) => (
@@ -126,8 +125,8 @@ const SidebarFilters = ({
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium">Age Range</label>
-        <div className="flex gap-2 w-auto">
+        <label className="text-sm font-medium text-gray-300">Age Range</label>
+        <div className="flex items-center gap-2">
           <input
             type="number"
             id="ageMin"
@@ -135,8 +134,9 @@ const SidebarFilters = ({
             value={filters.ageMin}
             onChange={handleChange}
             min="0"
+            max="30"
             placeholder="Min"
-            className="border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 border-gray-600 px-3 py-2 bg-gray-700 text-gray-400 w-full"
+            className="p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 bg-gray-700 w-full"
           />
           <input
             type="number"
@@ -145,8 +145,9 @@ const SidebarFilters = ({
             value={filters.ageMax}
             onChange={handleChange}
             min="0"
+            max="30"
             placeholder="Max"
-            className="border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 border-gray-600 px-3 py-2 bg-gray-700 text-gray-400 w-full"
+            className="p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 bg-gray-700 w-full"
           />
         </div>
       </div>
@@ -155,7 +156,7 @@ const SidebarFilters = ({
         type="submit"
         variant="primary"
         onClick={onSubmit}
-        className="py-2 px-4"
+        className="py-2 px-4 font-semibold"
       >
         Apply
       </Button>

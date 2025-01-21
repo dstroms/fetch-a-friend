@@ -1,16 +1,16 @@
 "use client";
-import { Button } from "@components/app/components/button";
+import { Button } from "@components/app/components/button/button";
 
 type PaginationProps = {
-  currentPage: number;
   pageSize: number;
+  currentPage: number;
   totalDogs: number;
   setCurrentPage: (page: number) => void;
 };
 
 export default function Pagination({
-  currentPage,
   pageSize,
+  currentPage,
   totalDogs,
   setCurrentPage,
 }: PaginationProps) {

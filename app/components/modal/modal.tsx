@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { ModalContent } from "./modal.types";
+import { ModalContent } from "../../types/modal.types";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Modal({

@@ -3,28 +3,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Logo from "./components/logo/logo";
-import { Button } from "./components/button";
+import { Button } from "./components/button/button";
+import { FetchAuthPostBody } from "./types/auth.types";
 
-type FormInputs = {
-  name: string;
-  email: string;
-};
-
-export default function Home() {
+export default function LoggedOut() {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<FetchAuthPostBody>();
 
   const [formState, setFormState] = useState<
-    "initial" | "submitting" | "success" | "error"
+    "initial" | "logging-in" | "error"
   >("initial");
 
   const onSubmit = handleSubmit(async (formData) => {
-    setFormState("submitting");
-
+    setFormState("logging-in");
     try {
       const response = await fetch(
         "https://frontend-take-home-service.fetch.com/auth/login",
@@ -42,10 +37,7 @@ export default function Home() {
         throw new Error("Login failed");
       }
 
-      console.log("response: ", response);
-
       router.push("/search");
-      setFormState("success");
     } catch (error) {
       console.error("Login error:", error);
       setFormState("error");
@@ -58,10 +50,15 @@ export default function Home() {
         <div className="flex flex-col gap-1 items-center">
           <Logo />
           <h1 className="text-3xl font-bold">Fetch a Friend</h1>
-          <h2>Where hearts and tails meet</h2>
+          <h2 className="text-3xl font-bold">Dog Matcher</h2>
+          <h3 className="text-sm font-medium">Where hearts and tails meet</h3>
         </div>
-        <div className="w-full max-w-lg rounded-2xl bg-gray-900 p-6 shadow-xl">
+        <div className="w-full max-w-sm rounded-2xl bg-gray-900 p-6 shadow-xl">
           <form onSubmit={onSubmit} className="space-y-4">
+            <div className="text-sm text-gray-400 text-center">
+              Login to search dogs and get matched with your new
+              best&nbsp;friend!
+            </div>
             <div>
               <input
                 {...register("name", { required: "Name is required" })}
@@ -99,9 +96,9 @@ export default function Home() {
             <Button
               type="submit"
               className="w-full"
-              disabled={formState === "submitting"}
+              disabled={formState === "logging-in"}
             >
-              {formState === "submitting" ? "Logging in..." : "Login"}
+              {formState === "logging-in" ? "Logging in..." : "Login"}
             </Button>
           </form>
         </div>

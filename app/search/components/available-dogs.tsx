@@ -7,13 +7,11 @@ import { FaceFrownIcon } from "@heroicons/react/24/outline";
 interface AvailableDogsProps {
   availableDogIds: string[];
   onAddFavorite: (dog: Dog) => void;
-  favoritesOnly?: boolean;
 }
 
 export default function AvailableDogs({
   availableDogIds,
   onAddFavorite,
-  favoritesOnly,
 }: AvailableDogsProps) {
   const [error, setError] = useState<string | null>(null);
   const [dogs, setDogs] = useState<Dog[]>([]);
@@ -52,7 +50,7 @@ export default function AvailableDogs({
   useEffect(() => {
     fetchBreeds();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [availableDogIds, favoritesOnly]);
+  }, [availableDogIds]);
 
   if (error) {
     return (

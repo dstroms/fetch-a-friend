@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiltersParams } from "../../types/filters.types";
-import { Button } from "../button";
+import { Button } from "../button/button";
 import Logo from "../logo/logo";
 import SidebarFilters from "./sidebar-filters";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
@@ -103,7 +103,7 @@ export default function Sidebar({
         </div>
       </div>
       <div className={`${isSidebarExpanded ? "flex" : "hidden sm:flex"}`}>
-        <Button variant="delete" className="text-sm" onClick={handleLogout}>
+        <Button variant="secondary" className="text-sm" onClick={handleLogout}>
           Logout
         </Button>
       </div>

@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fetch a Friend",
+  title:
+    "Fetch a Friend Dog Matcher | Search for dogs and get matched with your new best friend!",
   description: "Where hearts and tails meet",
 };
 
