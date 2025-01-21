@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button } from "@components/app/components/button/button";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/outline";
@@ -24,7 +23,9 @@ export default function BottomBar({
 
         <div className="flex -space-x-2 overflow-x-hidden">
           {favoriteDogs.map((dog) => (
-            <Image
+            // disable Vercel image optimization due to plan limits
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               key={dog.id}
               src={dog.img}
               alt={dog.name}
