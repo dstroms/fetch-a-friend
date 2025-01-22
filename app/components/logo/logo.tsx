@@ -1,4 +1,3 @@
-import Image from "next/image";
 import logo from "./logo-square.jpeg";
 
 type LogoProps = {
@@ -13,12 +12,13 @@ export default function Logo({
   className,
 }: LogoProps) {
   return (
-    <Image
-      src={logo}
+    // disable Next image optimization due to plan limits
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={logo.src}
       alt="Fetch a Friend Logo"
       width={width}
       height={height}
-      priority
       className={`rounded-full border-2 border-solid border-white ${className}`}
     />
   );
