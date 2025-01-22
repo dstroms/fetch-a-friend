@@ -1,5 +1,4 @@
 import { Dog } from "@components/app/types/dog.types";
-import Image from "next/image";
 
 type DogCardProps = {
   dog: Dog;
@@ -26,11 +25,14 @@ export function DogCard({
           fillContainer ? "h-32 sm:h-72" : "h-24 sm:h-48"
         } w-full`}
       >
-        <Image
+        {/* disable Next image optimization due to plan limits */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={dog.img}
           alt={dog.name}
-          fill
-          className="object-cover object-center"
+          width={400}
+          height={200}
+          className="w-full h-full object-cover object-center"
         />
       </div>
       <div className="flex flex-col sm:gap-2 p-2 sm:p-4">

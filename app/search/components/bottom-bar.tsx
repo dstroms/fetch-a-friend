@@ -23,7 +23,7 @@ export default function BottomBar({
 
         <div className="flex -space-x-2 overflow-x-hidden">
           {favoriteDogs.map((dog) => (
-            // disable Vercel image optimization due to plan limits
+            // disable Next image optimization due to plan limits
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={dog.id}
